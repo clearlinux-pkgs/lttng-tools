@@ -1,0 +1,24 @@
+From 602d4d0283c5602e88f144e27fbcb0c85fb8b8c6 Mon Sep 17 00:00:00 2001
+From: Auke Kok <auke-jan.h.kok@intel.com>
+Date: Thu, 26 Sep 2019 10:40:55 -0700
+Subject: [PATCH] Don't use tid.h compat - it's broken.
+
+---
+ src/common/error.h | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/common/error.h b/src/common/error.h
+index c90c4ae..837dd31 100644
+--- a/src/common/error.h
++++ b/src/common/error.h
+@@ -31,7 +31,6 @@
+ #endif
+ 
+ #include <lttng/lttng-error.h>
+-#include <common/compat/tid.h>
+ 
+ /* Avoid conflict with Solaris <sys/regset.h> */
+ #if defined(ERR) && defined(__sun__)
+-- 
+2.23.0
+
