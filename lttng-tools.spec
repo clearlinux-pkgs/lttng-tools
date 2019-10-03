@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x5F1B2A0789F12B11 (jeremie.galarneau@gmail.com)
 #
 Name     : lttng-tools
-Version  : 2.10.7
-Release  : 1
-URL      : http://lttng.org/files/lttng-tools/lttng-tools-2.10.7.tar.bz2
-Source0  : http://lttng.org/files/lttng-tools/lttng-tools-2.10.7.tar.bz2
-Source1 : http://lttng.org/files/lttng-tools/lttng-tools-2.10.7.tar.bz2.asc
-Summary  : The LTTng control and utility library is a library used to control the tracing sessions of a LTTng-session daemon
+Version  : 2.10.8
+Release  : 2
+URL      : http://lttng.org/files/lttng-tools/lttng-tools-2.10.8.tar.bz2
+Source0  : http://lttng.org/files/lttng-tools/lttng-tools-2.10.8.tar.bz2
+Source1 : http://lttng.org/files/lttng-tools/lttng-tools-2.10.8.tar.bz2.asc
+Summary  : LTTng tracing control tools
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: lttng-tools-bin = %{version}-%{release}
@@ -31,7 +31,6 @@ BuildRequires : python-core
 BuildRequires : sed
 BuildRequires : util-linux-dev
 BuildRequires : xmlto
-Patch1: 0001-Don-t-use-tid.h-compat-it-s-broken.patch
 
 %description
 LTTng core dump snapshot handler
@@ -66,6 +65,7 @@ Requires: lttng-tools-lib = %{version}-%{release}
 Requires: lttng-tools-bin = %{version}-%{release}
 Requires: lttng-tools-data = %{version}-%{release}
 Provides: lttng-tools-devel = %{version}-%{release}
+Requires: lttng-tools = %{version}-%{release}
 Requires: lttng-tools = %{version}-%{release}
 
 %description dev
@@ -108,28 +108,25 @@ man components for the lttng-tools package.
 
 
 %prep
-%setup -q -n lttng-tools-2.10.7
-%patch1 -p1
+%setup -q -n lttng-tools-2.10.8
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569522065
+export SOURCE_DATE_EPOCH=1570111943
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
-export AR=gcc-ar
-export RANLIB=gcc-ranlib
-export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1569522065
+export SOURCE_DATE_EPOCH=1570111943
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lttng-tools
 cp LICENSE %{buildroot}/usr/share/package-licenses/lttng-tools/LICENSE
