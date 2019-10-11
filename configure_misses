@@ -6,6 +6,6 @@ Configure miss: getipnodebyname
 Configure miss: uuid_generate
 Configure miss: kmod_module_probe_insert_module in -lkmod
 Configure miss: pfm_initialize in -lpfm
-Configure miss: python2 lttng-ust agent
+Configure miss: python2
 Configure miss: python3 lttng-ust agent
 Configure miss: tput

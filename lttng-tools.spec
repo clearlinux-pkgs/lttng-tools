@@ -6,11 +6,11 @@
 #
 Name     : lttng-tools
 Version  : 2.10.8
-Release  : 2
+Release  : 3
 URL      : http://lttng.org/files/lttng-tools/lttng-tools-2.10.8.tar.bz2
 Source0  : http://lttng.org/files/lttng-tools/lttng-tools-2.10.8.tar.bz2
 Source1 : http://lttng.org/files/lttng-tools/lttng-tools-2.10.8.tar.bz2.asc
-Summary  : LTTng tracing control tools
+Summary  : The LTTng control and utility library is a library used to control the tracing sessions of a LTTng-session daemon
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: lttng-tools-bin = %{version}-%{release}
@@ -27,7 +27,6 @@ BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(lttng-ust)
 BuildRequires : pkgconfig(popt)
 BuildRequires : pkgconfig(uuid)
-BuildRequires : python-core
 BuildRequires : sed
 BuildRequires : util-linux-dev
 BuildRequires : xmlto
@@ -65,7 +64,6 @@ Requires: lttng-tools-lib = %{version}-%{release}
 Requires: lttng-tools-bin = %{version}-%{release}
 Requires: lttng-tools-data = %{version}-%{release}
 Provides: lttng-tools-devel = %{version}-%{release}
-Requires: lttng-tools = %{version}-%{release}
 Requires: lttng-tools = %{version}-%{release}
 
 %description dev
@@ -115,8 +113,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570111943
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1570820550
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -126,10 +123,10 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1570111943
+export SOURCE_DATE_EPOCH=1570820550
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lttng-tools
-cp LICENSE %{buildroot}/usr/share/package-licenses/lttng-tools/LICENSE
+cp %{_builddir}/lttng-tools-2.10.8/LICENSE %{buildroot}/usr/share/package-licenses/lttng-tools/9aef668b607eff571b4b4aeac4fbee9397bc2507
 %make_install
 
 %files
@@ -186,7 +183,7 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/lttng-tools/LICENSE
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/lttng-tools/LICENSE
+/usr/share/package-licenses/lttng-tools/9aef668b607eff571b4b4aeac4fbee9397bc2507
 
 %files man
 %defattr(0644,root,root,0755)
