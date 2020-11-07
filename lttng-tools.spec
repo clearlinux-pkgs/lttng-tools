@@ -5,14 +5,14 @@
 # Source0 file verified with key 0x5F1B2A0789F12B11 (jeremie.galarneau@gmail.com)
 #
 Name     : lttng-tools
-Version  : 2.10.8
-Release  : 3
-URL      : http://lttng.org/files/lttng-tools/lttng-tools-2.10.8.tar.bz2
-Source0  : http://lttng.org/files/lttng-tools/lttng-tools-2.10.8.tar.bz2
-Source1 : http://lttng.org/files/lttng-tools/lttng-tools-2.10.8.tar.bz2.asc
+Version  : 2.12.2
+Release  : 4
+URL      : https://lttng.org/files/lttng-tools/lttng-tools-2.12.2.tar.bz2
+Source0  : https://lttng.org/files/lttng-tools/lttng-tools-2.12.2.tar.bz2
+Source1  : https://lttng.org/files/lttng-tools/lttng-tools-2.12.2.tar.bz2.asc
 Summary  : The LTTng control and utility library is a library used to control the tracing sessions of a LTTng-session daemon
 Group    : Development/Tools
-License  : LGPL-2.1
+License  : GPL-2.0 LGPL-2.1
 Requires: lttng-tools-bin = %{version}-%{release}
 Requires: lttng-tools-data = %{version}-%{release}
 Requires: lttng-tools-lib = %{version}-%{release}
@@ -26,9 +26,7 @@ BuildRequires : pkgconfig(liburcu)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(lttng-ust)
 BuildRequires : pkgconfig(popt)
-BuildRequires : pkgconfig(uuid)
 BuildRequires : sed
-BuildRequires : util-linux-dev
 BuildRequires : xmlto
 
 %description
@@ -106,27 +104,28 @@ man components for the lttng-tools package.
 
 
 %prep
-%setup -q -n lttng-tools-2.10.8
+%setup -q -n lttng-tools-2.12.2
+cd %{_builddir}/lttng-tools-2.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570820550
+export SOURCE_DATE_EPOCH=1604707280
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1570820550
+export SOURCE_DATE_EPOCH=1604707280
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lttng-tools
-cp %{_builddir}/lttng-tools-2.10.8/LICENSE %{buildroot}/usr/share/package-licenses/lttng-tools/9aef668b607eff571b4b4aeac4fbee9397bc2507
+cp %{_builddir}/lttng-tools-2.12.2/LICENSE %{buildroot}/usr/share/package-licenses/lttng-tools/f717cf0eeaf3ba3bda0570e996bcb5d73fb5d856
 %make_install
 
 %files
@@ -149,25 +148,34 @@ cp %{_builddir}/lttng-tools-2.10.8/LICENSE %{buildroot}/usr/share/package-licens
 /usr/include/lttng/action/action.h
 /usr/include/lttng/action/notify.h
 /usr/include/lttng/channel.h
+/usr/include/lttng/clear-handle.h
+/usr/include/lttng/clear.h
 /usr/include/lttng/condition/buffer-usage.h
 /usr/include/lttng/condition/condition.h
 /usr/include/lttng/condition/evaluation.h
+/usr/include/lttng/condition/session-consumed-size.h
+/usr/include/lttng/condition/session-rotation.h
 /usr/include/lttng/constant.h
+/usr/include/lttng/destruction-handle.h
 /usr/include/lttng/domain.h
 /usr/include/lttng/endpoint.h
 /usr/include/lttng/event.h
 /usr/include/lttng/handle.h
 /usr/include/lttng/health.h
 /usr/include/lttng/load.h
+/usr/include/lttng/location.h
 /usr/include/lttng/lttng-error.h
 /usr/include/lttng/lttng.h
 /usr/include/lttng/notification/channel.h
 /usr/include/lttng/notification/notification.h
+/usr/include/lttng/rotation.h
 /usr/include/lttng/save.h
+/usr/include/lttng/session-descriptor.h
 /usr/include/lttng/session.h
 /usr/include/lttng/snapshot.h
+/usr/include/lttng/tracker.h
 /usr/include/lttng/trigger/trigger.h
-/usr/include/lttng/version.h.tmpl
+/usr/include/lttng/userspace-probe.h
 /usr/lib64/liblttng-ctl.so
 /usr/lib64/pkgconfig/lttng-ctl.pc
 /usr/share/man/man3/lttng-health-check.3
@@ -183,23 +191,27 @@ cp %{_builddir}/lttng-tools-2.10.8/LICENSE %{buildroot}/usr/share/package-licens
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/lttng-tools/9aef668b607eff571b4b4aeac4fbee9397bc2507
+/usr/share/package-licenses/lttng-tools/f717cf0eeaf3ba3bda0570e996bcb5d73fb5d856
 
 %files man
 %defattr(0644,root,root,0755)
 /usr/share/man/man1/lttng-add-context.1
+/usr/share/man/man1/lttng-clear.1
 /usr/share/man/man1/lttng-crash.1
 /usr/share/man/man1/lttng-create.1
 /usr/share/man/man1/lttng-destroy.1
 /usr/share/man/man1/lttng-disable-channel.1
 /usr/share/man/man1/lttng-disable-event.1
+/usr/share/man/man1/lttng-disable-rotation.1
 /usr/share/man/man1/lttng-enable-channel.1
 /usr/share/man/man1/lttng-enable-event.1
+/usr/share/man/man1/lttng-enable-rotation.1
 /usr/share/man/man1/lttng-help.1
 /usr/share/man/man1/lttng-list.1
 /usr/share/man/man1/lttng-load.1
 /usr/share/man/man1/lttng-metadata.1
 /usr/share/man/man1/lttng-regenerate.1
+/usr/share/man/man1/lttng-rotate.1
 /usr/share/man/man1/lttng-save.1
 /usr/share/man/man1/lttng-set-session.1
 /usr/share/man/man1/lttng-snapshot.1
