@@ -1,12 +1,12 @@
-Configure miss: x86_64-generic-linux-gnu-objcopy
-Configure miss: pgrep
-Configure miss: occurence(s) of link_all_deplibs = no in ./m4/libtool.m4
+Configure miss: dtrace
 Configure miss: fls
 Configure miss: getipnodebyname
 Configure miss: kmod_module_probe_insert_module in -lkmod
+Configure miss: occurence(s) of link_all_deplibs = no in ./m4/libtool.m4
 Configure miss: pfm_initialize in -lpfm
+Configure miss: pgrep
 Configure miss: python2
 Configure miss: python3 lttng-ust agent
-Configure miss: whether SDT probes compile
-Configure miss: dtrace
 Configure miss: tput
+Configure miss: whether SDT probes compile
+Configure miss: x86_64-generic-linux-gnu-objcopy
