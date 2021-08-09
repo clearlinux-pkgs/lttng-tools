@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x5F1B2A0789F12B11 (jeremie.galarneau@gmail.com)
 #
 Name     : lttng-tools
-Version  : 2.12.4
-Release  : 6
-URL      : https://lttng.org/files/lttng-tools/lttng-tools-2.12.4.tar.bz2
-Source0  : https://lttng.org/files/lttng-tools/lttng-tools-2.12.4.tar.bz2
-Source1  : https://lttng.org/files/lttng-tools/lttng-tools-2.12.4.tar.bz2.asc
-Summary  : The LTTng control and utility library is a library used to control the tracing sessions of a LTTng-session daemon
+Version  : 2.13.0
+Release  : 7
+URL      : https://lttng.org/files/lttng-tools/lttng-tools-2.13.0.tar.bz2
+Source0  : https://lttng.org/files/lttng-tools/lttng-tools-2.13.0.tar.bz2
+Source1  : https://lttng.org/files/lttng-tools/lttng-tools-2.13.0.tar.bz2.asc
+Summary  : Control LTTng recording sessions and triggers
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: lttng-tools-bin = %{version}-%{release}
@@ -23,6 +23,8 @@ BuildRequires : bison
 BuildRequires : flex
 BuildRequires : grep
 BuildRequires : pkgconfig(liburcu)
+BuildRequires : pkgconfig(liburcu-bp)
+BuildRequires : pkgconfig(liburcu-cds)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(lttng-ust)
 BuildRequires : pkgconfig(popt)
@@ -30,12 +32,8 @@ BuildRequires : sed
 BuildRequires : xmlto
 
 %description
-LTTng core dump snapshot handler
-Christian Babeux, June 2013
-This is a custom core dump program that will be called when a core dump
-occurs. The program will save the core data in CORE_PATH and also, if a
-root session daemon is running, will record a snapshot of tracing data
-using the lttng command line utility.
+On version.i generation, check the content of the following files :
+* "extra_version_name"
 
 %package bin
 Summary: bin components for the lttng-tools package.
@@ -104,15 +102,15 @@ man components for the lttng-tools package.
 
 
 %prep
-%setup -q -n lttng-tools-2.12.4
-cd %{_builddir}/lttng-tools-2.12.4
+%setup -q -n lttng-tools-2.13.0
+cd %{_builddir}/lttng-tools-2.13.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1621441770
+export SOURCE_DATE_EPOCH=1628537699
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -122,10 +120,10 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1621441770
+export SOURCE_DATE_EPOCH=1628537699
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lttng-tools
-cp %{_builddir}/lttng-tools-2.12.4/LICENSE %{buildroot}/usr/share/package-licenses/lttng-tools/f717cf0eeaf3ba3bda0570e996bcb5d73fb5d856
+cp %{_builddir}/lttng-tools-2.13.0/LICENSE %{buildroot}/usr/share/package-licenses/lttng-tools/f717cf0eeaf3ba3bda0570e996bcb5d73fb5d856
 %make_install
 
 %files
@@ -146,24 +144,46 @@ cp %{_builddir}/lttng-tools-2.12.4/LICENSE %{buildroot}/usr/share/package-licens
 %files dev
 %defattr(-,root,root,-)
 /usr/include/lttng/action/action.h
+/usr/include/lttng/action/list.h
 /usr/include/lttng/action/notify.h
+/usr/include/lttng/action/path.h
+/usr/include/lttng/action/rate-policy.h
+/usr/include/lttng/action/rotate-session.h
+/usr/include/lttng/action/snapshot-session.h
+/usr/include/lttng/action/start-session.h
+/usr/include/lttng/action/stop-session.h
 /usr/include/lttng/channel.h
 /usr/include/lttng/clear-handle.h
 /usr/include/lttng/clear.h
 /usr/include/lttng/condition/buffer-usage.h
 /usr/include/lttng/condition/condition.h
 /usr/include/lttng/condition/evaluation.h
+/usr/include/lttng/condition/event-rule-matches.h
 /usr/include/lttng/condition/session-consumed-size.h
 /usr/include/lttng/condition/session-rotation.h
 /usr/include/lttng/constant.h
 /usr/include/lttng/destruction-handle.h
 /usr/include/lttng/domain.h
 /usr/include/lttng/endpoint.h
+/usr/include/lttng/error-query.h
+/usr/include/lttng/event-expr.h
+/usr/include/lttng/event-field-value.h
+/usr/include/lttng/event-rule/event-rule.h
+/usr/include/lttng/event-rule/jul-logging.h
+/usr/include/lttng/event-rule/kernel-kprobe.h
+/usr/include/lttng/event-rule/kernel-syscall.h
+/usr/include/lttng/event-rule/kernel-tracepoint.h
+/usr/include/lttng/event-rule/kernel-uprobe.h
+/usr/include/lttng/event-rule/log4j-logging.h
+/usr/include/lttng/event-rule/python-logging.h
+/usr/include/lttng/event-rule/user-tracepoint.h
 /usr/include/lttng/event.h
 /usr/include/lttng/handle.h
 /usr/include/lttng/health.h
+/usr/include/lttng/kernel-probe.h
 /usr/include/lttng/load.h
 /usr/include/lttng/location.h
+/usr/include/lttng/log-level-rule.h
 /usr/include/lttng/lttng-error.h
 /usr/include/lttng/lttng.h
 /usr/include/lttng/notification/channel.h
@@ -196,6 +216,7 @@ cp %{_builddir}/lttng-tools-2.12.4/LICENSE %{buildroot}/usr/share/package-licens
 %files man
 %defattr(0644,root,root,0755)
 /usr/share/man/man1/lttng-add-context.1
+/usr/share/man/man1/lttng-add-trigger.1
 /usr/share/man/man1/lttng-clear.1
 /usr/share/man/man1/lttng-crash.1
 /usr/share/man/man1/lttng-create.1
@@ -207,10 +228,12 @@ cp %{_builddir}/lttng-tools-2.12.4/LICENSE %{buildroot}/usr/share/package-licens
 /usr/share/man/man1/lttng-enable-event.1
 /usr/share/man/man1/lttng-enable-rotation.1
 /usr/share/man/man1/lttng-help.1
+/usr/share/man/man1/lttng-list-triggers.1
 /usr/share/man/man1/lttng-list.1
 /usr/share/man/man1/lttng-load.1
 /usr/share/man/man1/lttng-metadata.1
 /usr/share/man/man1/lttng-regenerate.1
+/usr/share/man/man1/lttng-remove-trigger.1
 /usr/share/man/man1/lttng-rotate.1
 /usr/share/man/man1/lttng-save.1
 /usr/share/man/man1/lttng-set-session.1
@@ -223,5 +246,7 @@ cp %{_builddir}/lttng-tools-2.12.4/LICENSE %{buildroot}/usr/share/package-licens
 /usr/share/man/man1/lttng-version.1
 /usr/share/man/man1/lttng-view.1
 /usr/share/man/man1/lttng.1
+/usr/share/man/man7/lttng-concepts.7
+/usr/share/man/man7/lttng-event-rule.7
 /usr/share/man/man8/lttng-relayd.8
 /usr/share/man/man8/lttng-sessiond.8

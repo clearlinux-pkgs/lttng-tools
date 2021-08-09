@@ -1,11 +1,9 @@
 ld-linux-x86-64.so.2
 libc.so.6
-libdl.so.2
 libgcc_s.so.1
-liblttng-ust-ctl.so.4
+liblttng-ust-common.so.1
+liblttng-ust-ctl.so.5
 libpopt.so.0
-libpthread.so.0
-librt.so.1
 liburcu-cds.so.6
 liburcu-common.so.6
 liburcu.so.6
