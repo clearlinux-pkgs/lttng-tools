@@ -6,7 +6,7 @@
 #
 Name     : lttng-tools
 Version  : 2.13.0
-Release  : 7
+Release  : 8
 URL      : https://lttng.org/files/lttng-tools/lttng-tools-2.13.0.tar.bz2
 Source0  : https://lttng.org/files/lttng-tools/lttng-tools-2.13.0.tar.bz2
 Source1  : https://lttng.org/files/lttng-tools/lttng-tools-2.13.0.tar.bz2.asc
@@ -110,7 +110,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1628537699
+export SOURCE_DATE_EPOCH=1629305549
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -120,7 +120,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1628537699
+export SOURCE_DATE_EPOCH=1629305549
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lttng-tools
 cp %{_builddir}/lttng-tools-2.13.0/LICENSE %{buildroot}/usr/share/package-licenses/lttng-tools/f717cf0eeaf3ba3bda0570e996bcb5d73fb5d856
