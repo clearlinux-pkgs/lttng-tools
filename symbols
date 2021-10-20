@@ -300,8 +300,10 @@ liblttng-ctl.so.0:lttng_process_attr_virtual_user_id_tracker_handle_remove_uid
 liblttng-ctl.so.0:lttng_process_attr_virtual_user_id_tracker_handle_remove_user_name
 liblttng-ctl.so.0:lttng_rate_policy_destroy
 liblttng-ctl.so.0:lttng_rate_policy_every_n_create
+liblttng-ctl.so.0:lttng_rate_policy_every_n_get_interval
 liblttng-ctl.so.0:lttng_rate_policy_get_type
 liblttng-ctl.so.0:lttng_rate_policy_once_after_n_create
+liblttng-ctl.so.0:lttng_rate_policy_once_after_n_get_threshold
 liblttng-ctl.so.0:lttng_regenerate_metadata
 liblttng-ctl.so.0:lttng_regenerate_statedump
 liblttng-ctl.so.0:lttng_register_consumer
@@ -340,6 +342,7 @@ liblttng-ctl.so.0:lttng_session_add_rotation_schedule
 liblttng-ctl.so.0:lttng_session_daemon_alive
 liblttng-ctl.so.0:lttng_session_descriptor_create
 liblttng-ctl.so.0:lttng_session_descriptor_destroy
+liblttng-ctl.so.0:lttng_session_descriptor_get_session_name
 liblttng-ctl.so.0:lttng_session_descriptor_live_create
 liblttng-ctl.so.0:lttng_session_descriptor_live_network_create
 liblttng-ctl.so.0:lttng_session_descriptor_local_create
