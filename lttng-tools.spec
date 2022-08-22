@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5F1B2A0789F12B11 (jeremie.galarneau@gmail.com)
 #
 Name     : lttng-tools
-Version  : 2.13.7
-Release  : 13
-URL      : https://lttng.org/files/lttng-tools/lttng-tools-2.13.7.tar.bz2
-Source0  : https://lttng.org/files/lttng-tools/lttng-tools-2.13.7.tar.bz2
-Source1  : https://lttng.org/files/lttng-tools/lttng-tools-2.13.7.tar.bz2.asc
+Version  : 2.13.8
+Release  : 14
+URL      : https://lttng.org/files/lttng-tools/lttng-tools-2.13.8.tar.bz2
+Source0  : https://lttng.org/files/lttng-tools/lttng-tools-2.13.8.tar.bz2
+Source1  : https://lttng.org/files/lttng-tools/lttng-tools-2.13.8.tar.bz2.asc
 Summary  : Control LTTng recording sessions and triggers
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -106,15 +106,15 @@ man components for the lttng-tools package.
 
 
 %prep
-%setup -q -n lttng-tools-2.13.7
-cd %{_builddir}/lttng-tools-2.13.7
+%setup -q -n lttng-tools-2.13.8
+cd %{_builddir}/lttng-tools-2.13.8
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1649946393
+export SOURCE_DATE_EPOCH=1661210074
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -124,10 +124,10 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1649946393
+export SOURCE_DATE_EPOCH=1661210074
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lttng-tools
-cp %{_builddir}/lttng-tools-2.13.7/LICENSE %{buildroot}/usr/share/package-licenses/lttng-tools/f717cf0eeaf3ba3bda0570e996bcb5d73fb5d856
+cp %{_builddir}/lttng-tools-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/lttng-tools/f717cf0eeaf3ba3bda0570e996bcb5d73fb5d856
 %make_install
 
 %files

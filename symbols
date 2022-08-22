@@ -260,6 +260,9 @@ liblttng-ctl.so.0:lttng_notification_channel_subscribe
 liblttng-ctl.so.0:lttng_notification_channel_unsubscribe
 liblttng-ctl.so.0:lttng_notification_destroy
 liblttng-ctl.so.0:lttng_notification_get_condition
+liblttng-ctl.so.0:lttng_notification_get_const_condition
+liblttng-ctl.so.0:lttng_notification_get_const_evaluation
+liblttng-ctl.so.0:lttng_notification_get_const_trigger
 liblttng-ctl.so.0:lttng_notification_get_evaluation
 liblttng-ctl.so.0:lttng_notification_get_trigger
 liblttng-ctl.so.0:lttng_process_attr_group_id_tracker_handle_add_gid
