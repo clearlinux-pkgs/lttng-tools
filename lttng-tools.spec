@@ -9,7 +9,7 @@
 #
 Name     : lttng-tools
 Version  : 2.13.11
-Release  : 17
+Release  : 18
 URL      : https://lttng.org/files/lttng-tools/lttng-tools-2.13.11.tar.bz2
 Source0  : https://lttng.org/files/lttng-tools/lttng-tools-2.13.11.tar.bz2
 Source1  : https://lttng.org/files/lttng-tools/lttng-tools-2.13.11.tar.bz2.asc
