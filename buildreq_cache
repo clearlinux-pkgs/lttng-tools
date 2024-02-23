@@ -1,6 +1,5 @@
-2.13.11
+2.12.14
 asciidoc
 bison
 flex
-pkgconfig(lttng-ust-ctl)
 xmlto
