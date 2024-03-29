@@ -292,3 +292,4 @@ liblttng-ctl.so.0:lttng_yyset_lineno
 liblttng-ctl.so.0:lttng_yyset_lval
 liblttng-ctl.so.0:lttng_yyset_out
 liblttng-ctl.so.0:spawn_viewer
+liblttng-ctl.so.0:utils_create_lock_file
